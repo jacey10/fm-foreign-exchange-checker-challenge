@@ -13,7 +13,7 @@
   font-family: 'JetBrains Mono';
   font-style: normal;
   font-weight: 500;
-  src: url('../fonts/jetbrains-mono-v24-latin-500.woff2') format('woff2'); /
+  src: url('../fonts/jetbrains-mono-v24-latin-500.woff2') format('woff2');
 }
 
 /* jetbrains-mono-700 - latin */
@@ -103,41 +103,77 @@ textarea:not([rows]) {
 }
 
 :root {
+    
   /* =========================
-     Neutrals (HSL)
+    RAW PALETTE (HSL)
+    ========================= */
+
+  --neutral-900: hsl(0 0% 4%);
+  --neutral-700: hsl(240 5% 9%);
+  --neutral-600: hsl(240 4% 13%);
+  --neutral-500: hsl(0 0% 18%);
+  --neutral-400: hsl(0 0% 24%);
+  --neutral-300: hsl(240 1% 27%);
+  --neutral-200: hsl(0 0% 62%);
+  --neutral-100: hsl(0 0% 78%);
+  --neutral-50:  hsl(0 0% 100%);
+
+  --lime-500: hsl(72 92% 60%);
+  --lime-800: hsl(74 100% 10%);
+  --green-500: hsl(102 97% 47%);
+  --red-500: hsl(0 100% 63%);
+
+  /* =========================
+     SEMANTIC TOKENS (DARK MODE DEFAULT)
      ========================= */
 
-  --color-neutral-900: hsl(0 0% 4%);      /* #0A0A0A */
-  --color-neutral-700: hsl(240 5% 9%);    /* #171719 */
-  --color-neutral-600: hsl(240 4% 13%);   /* #202022 */
-  --color-neutral-500: hsl(0 0% 18%);     /* #2E2E2E */
-  --color-neutral-400: hsl(0 0% 24%);     /* #3D3D3D */
-  --color-neutral-300: hsl(240 1% 27%);   /* #454547 */
-  --color-neutral-200: hsl(0 0% 62%);     /* #9D9D9D */
-  --color-neutral-100: hsl(0 0% 78%);     /* #C6C6C6 */
-  --color-neutral-50:  hsl(0 0% 100%);    /* #FFFFFF */
+  --bg: var(--neutral-900);
+  --surface-1: var(--neutral-700);
+  --surface-2: var(--neutral-600);
+  --surface-3: var(--neutral-500);
 
-  /* =========================
-     Accent Colors (HSL)
-     ========================= */
+  --text-primary: var(--neutral-50);
+  --text-secondary: var(--neutral-200);
+  --text-muted: var(--neutral-300);
 
-  --color-lime-500: hsl(72 92% 60%);      /* #CEF739 */
-  --color-lime-800: hsl(74 100% 10%);     /* #283300 */
+  --border: var(--neutral-500);
 
-  --color-green-500: hsl(102 97% 47%);    /* #42EB05 */
-  --color-red-500: hsl(0 100% 63%);       /* #FF4141 */
+  --accent: var(--lime-500);
+  --accent-contrast: var(--neutral-900);
 
+  --success: var(--green-500);
+  --danger: var(--red-500);
+
+  /* interactive states */
+  --hover-overlay: hsl(0 0% 100% / 0.06);
+  --active-overlay: hsl(0 0% 100% / 0.12);
+
+  
   /* =========================
      Typography
      ========================= */
 
-  /* font family */
+  /* Font Family */
   --ff-body: 'JetBrains Mono', sans-serif;
 
-  /* font size */
-  --fs-paragraph: 0.9375rem;
+  /* Font sizes */
+  --fs-1: 2.5rem;      /* 40px */
+  --fs-1-tablet: 2rem; /* 32px */
+  --fs-2: 1.25rem;     /* 20px */
+  --fs-3: 1rem;        /* 16px */
+  --fs-3-mobile: 0.875rem; /* 14px */
+  --fs-4: 0.875rem;    /* 14px */
+  --fs-5: 0.75rem;     /* 12px */
+  --fs-6: 0.625rem;    /* 10px */
 
-  /* font weights */
+  /* Line heights */
+  --lh-100: 1;
+  --lh-110: 1.1;
+  --lh-120: 1.2;
+  --lh-130: 1.3;
+  --lh-140: 1.4;
+
+  /* Font Weights */
   --fw-regular: 400;
   --fw-medium: 500;
   --fw-bold: 700;
@@ -183,6 +219,33 @@ textarea:not([rows]) {
   --radius-full: 999px;
 }
 
+/* =========================
+   LIGHT MODE OVERRIDES
+   ========================= */
+
+[data-theme="light"] {
+  --bg: var(--neutral-50);
+  --surface-1: hsl(0 0% 97%);
+  --surface-2: hsl(0 0% 94%);
+  --surface-3: hsl(0 0% 90%);
+
+  --text-primary: var(--neutral-900);
+  --text-secondary: var(--neutral-500);
+  --text-muted: var(--neutral-400);
+
+  --border: var(--neutral-200);
+
+  /* keep lime but slightly adjusted for contrast on light surfaces */
+  --accent: hsl(72 92% 45%);
+  --accent-contrast: var(--neutral-50);
+
+  --success: hsl(102 85% 40%);
+  --danger: hsl(0 90% 55%);
+
+  --hover-overlay: hsl(0 0% 0% / 0.04);
+  --active-overlay: hsl(0 0% 0% / 0.08);
+}
+
 
 /* === Accessibility Checks  === */
 
@@ -198,3 +261,59 @@ textarea:not([rows]) {
   }
 }
 
+.text-preset-1 {
+  font-size: var(--fs-1);
+  line-height: var(--lh-100);
+  font-weight: var(--fw-regular);
+}
+
+.text-preset-2 {
+  font-size: var(--fs-2);
+  line-height: var(--lh-120);
+  font-weight: var(--fw-regular);
+}
+
+.text-preset-2-bold {
+  font-size: var(--fs-2);
+  line-height: var(--lh-140);
+  font-weight: var(--fw-bold);
+}
+
+.text-preset-3 {
+  font-size: var(--fs-3);
+  line-height: var(--lh-120);
+  font-weight: var(--fw-regular);
+}
+
+.text-preset-3-medium {
+  font-size: var(--fs-3);
+  line-height: var(--lh-120);
+  font-weight: var(--fw-medium);
+}
+
+.text-preset-3-bold {
+  font-size: var(--fs-3);
+  line-height: var(--lh-110);
+  font-weight: var(--fw-bold);
+}
+
+.text-preset-4 {
+  font-size: var(--fs-4);
+  line-height: var(--lh-120);
+}
+
+.text-preset-5 {
+  font-size: var(--fs-5);
+  line-height: var(--lh-120);
+}
+
+.text-preset-5-medium {
+  font-size: var(--fs-5);
+  line-height: var(--lh-130);
+  font-weight: var(--fw-medium);
+}
+
+.text-preset-6 {
+  font-size: var(--fs-6);
+  line-height: var(--lh-100);
+}
